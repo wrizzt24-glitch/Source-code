@@ -67,7 +67,11 @@ public class User_Verify extends HttpServlet {
                 }
         }
         catch(Exception e){
-            
+            e.printStackTrace();
+            out.println("<h3>Error in User Verification: " + e.getMessage() + "</h3>");
+            out.println("<pre>");
+            e.printStackTrace(out);
+            out.println("</pre>");
         }
         }
 

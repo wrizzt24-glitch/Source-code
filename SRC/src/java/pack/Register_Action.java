@@ -55,8 +55,11 @@ public class Register_Action extends HttpServlet {
             
         }
         catch(Exception e){ 
-            
-    
+            e.printStackTrace();
+            out.println("<h3>Error in Registration: " + e.getMessage() + "</h3>");
+            out.println("<pre>");
+            e.printStackTrace(out);
+            out.println("</pre>");
         }
     }
 
