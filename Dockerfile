@@ -1,9 +1,14 @@
 FROM tomcat:9.0-jdk8-temurin
 
-# Remove default ROOT to avoid conflicts
-RUN rm -rf /usr/local/tomcat/webapps/ROOT
+# Install unzip
+RUN apt-get update && apt-get install -y unzip && rm -rf /var/lib/apt/lists/*
 
-# Copy the original WAR file directly as ROOT.war
-COPY SRC/dist/Enabling2.war /usr/local/tomcat/webapps/ROOT.war
+# Remove default ROOT
+RUN rm -rf /usr/local/tomcat/webapps/ROOT
+RUN mkdir -p /usr/local/tomcat/webapps/ROOT
+
+# Copy and extract the WAR file directly into ROOT
+COPY SRC/dist/Enabling2.war /tmp/app.war
+RUN unzip /tmp/app.war -d /usr/local/tomcat/webapps/ROOT/ && rm /tmp/app.war
 
 EXPOSE 8080
