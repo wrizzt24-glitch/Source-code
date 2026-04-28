@@ -15,8 +15,8 @@ RUN unzip /tmp/app.war -d /usr/local/tomcat/webapps/ROOT/ || true
 RUN rm /tmp/app.war
 
 # Upgrade MySQL Driver to support caching_sha2_password
+RUN find /usr/local/tomcat/webapps/ROOT -name "mysql-connector-java*.jar" -type f -delete
 RUN wget https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.4.0/mysql-connector-j-8.4.0.jar -P /usr/local/tomcat/webapps/ROOT/WEB-INF/lib/
-RUN rm /usr/local/tomcat/webapps/ROOT/WEB-INF/lib/mysql-connector-java-*.jar || true
 
 # Fix Java Version Error (UnsupportedClassVersionError)
 # Recompile the Java sources inside the container using Java 8 to ensure compatibility
