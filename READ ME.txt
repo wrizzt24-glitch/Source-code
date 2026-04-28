@@ -1,0 +1,110 @@
+                                
+                                     Enabling Authorized Encrypted Search for Multi-Authority Medical Databases
+
+
+    Open the project and run ....
+     
+  --> This Project has 6 modules :
+      
+1) The Admin :
+     
+      * Admin Login: Admin has to login into our website first.
+      
+      * Only authorized admin can login into our system.
+        
+      * Authourize User : Admin has to accept and Authorize the user
+                    there is a button regauding the authorization click there....
+                  you can see the user has beeen changed to already authorized...
+          
+2) The User :
+              
+               * Register --> The User has to register into our application first (name,email,mobile,etc).
+           
+               * User Authorization from the admin. (here the user has not been Authorized so invalid login).
+                
+               * Login --> The User Has to login into their account with respective username and password.                    
+                        
+               * Add Personal Data (including Insurance and Bank Data also) --> 
+
+                          1) Add personal detrails likes (username,mobile,email,address,etc)
+           
+                          2) Add insurance details likes (username,insurance type, policynum,email,address).
+                         
+                          3) Add bank details like (username,bankname,banktype,accountnum,address).
+
+              * Fix Appointment : The user has to choose the respective doctor and make an appointment.
+                         by choosing the doctor they have to send 
+                            1) The report of the diseases (like Cancer,surgery,etc......)
+
+             
+                
+              * The User has to upload the Report and Send it-->(hospital)-->Doctor.
+
+              * View personal Data  (including Insurance and Bank Data also) -->       
+
+                       1) View all the message sent by the Insurance , doctor and bank.
+              
+              * Once cost of the medical has recived from the doctor the user must send it to (insurance agent)...
+
+              * After approval the user can see the message from the banker that ur status has approved...
+             
+             * Logout.
+
+
+  3) The Hospital Module :
+
+        * The Hospital Login --> The hospital has to login into the account first.
+        
+        * Authorization : The hsopital has to Authorize the List of doctors who are waiting for authorization...
+                 you can see there is no one to authorize now let reg a doctor and authorize..
+                 Now the docotr has benn activated they can login....
+
+        * View All Appointment Data details : Here The hospital can see which patient has appointment with which Doctor.
+       
+        * The hospital has to send the report to doctor but the report will be in encrypted format..
+             --> You can see the report has been completed encrypted ....
+        
+        * View keys and Send to doctor --> view the list of keys and send it to respective doctor.
+               --> Send Key to Doctor : A request has been recived to user to send the key to doctor..
+                                     so the user has to send a key to doctor ( the key that will be generated here is Random number).
+
+  4) The Doctor Module : 
+           
+          * The Doctor Has to registe into our website first.
+
+          * The Doctor has to Wait.. for Authorization from Hospital center ...
+               if not authorized its says invalid login...
+
+          * After Successfull Authorization the docotor can login into our account ...
+
+          * View The Reports --> See all the Patients reports sent by (user) -->(Hospital)-->(Docotor) in decrypted format.
+
+          * Doctor Can now Download the respective report see analyze the report and estimate the cost for the operation or consultancy
+      
+          * Now the doctor has to approve the report (like patient name,doctorname,report,cost etc..) and send to user..
+
+   5) Insurance module :
+     
+           * LOGIN --> The insurance agent has to login to the website..
+            
+           * Only the Authorized insurance Agent Can login to our website.
+           
+           * insurance agent can see the report and cost of the amount.
+           
+           * After successfull verifiction the insurance agent can send request to bank.
+           
+           * The insurance agent has to send the policynum,patient name,and msg to the baker for verfication.
+        
+           
+   
+   6)  The Banker Module :
+ 
+        * The banker has to login into our website.
+        
+        * Only the authorized banks can login into our websites..
+
+        * The Banker can see the list of insurance claimes by the Patient...
+ 
+        *After Verification the bank can transefer the amount and send a message to the user saying that ur request has approved ...
+ 
+    thanks for watching....
