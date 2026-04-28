@@ -14,4 +14,9 @@ COPY SRC/dist/Enabling2.war /tmp/app.war
 RUN unzip /tmp/app.war -d /usr/local/tomcat/webapps/ROOT/ || true
 RUN rm /tmp/app.war
 
+# Fix Java Version Error (UnsupportedClassVersionError)
+# Recompile the Java sources inside the container using Java 8 to ensure compatibility
+COPY SRC/src/java/pack/*.java /tmp/src/pack/
+RUN javac -cp "/usr/local/tomcat/lib/servlet-api.jar:/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/*:/usr/local/tomcat/webapps/ROOT/WEB-INF/classes" -d /usr/local/tomcat/webapps/ROOT/WEB-INF/classes /tmp/src/pack/*.java
+
 EXPOSE 8080
