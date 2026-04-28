@@ -36,4 +36,7 @@ RUN echo "=== FINAL STATE ===" && ls -la /usr/local/tomcat/webapps/ROOT/WEB-INF/
 COPY SRC/src/java/pack/*.java /tmp/src/pack/
 RUN javac -cp "/usr/local/tomcat/lib/servlet-api.jar:/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/*:/usr/local/tomcat/lib/*:/usr/local/tomcat/webapps/ROOT/WEB-INF/classes" -d /usr/local/tomcat/webapps/ROOT/WEB-INF/classes /tmp/src/pack/*.java
 
+# Limit Java memory to prevent Railway Out-Of-Memory crashes
+ENV CATALINA_OPTS="-Xms128m -Xmx256m -XX:MaxMetaspaceSize=128m"
+
 EXPOSE 8080
