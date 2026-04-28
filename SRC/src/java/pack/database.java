@@ -1,7 +1,9 @@
 package pack;
 
 import java.sql.Connection;
+import java.sql.Driver;
 import java.sql.DriverManager;
+import java.util.Enumeration;
 
 public class database {
 
@@ -14,7 +16,22 @@ public class database {
 	}
 
     public Connection fun() throws Exception {
-        Class.forName(envOrDefault("DB_DRIVER", "com.mysql.cj.jdbc.Driver"));
+        // Force-load the NEW MySQL 8 driver
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        
+        // Deregister any OLD MySQL 5.x drivers that might have auto-loaded
+        Enumeration<Driver> drivers = DriverManager.getDrivers();
+        while (drivers.hasMoreElements()) {
+            Driver d = drivers.nextElement();
+            String driverClass = d.getClass().getName();
+            // Remove old driver but keep the new one
+            if (driverClass.equals("com.mysql.jdbc.Driver") || 
+                driverClass.equals("com.mysql.jdbc.NonRegisteringDriver")) {
+                System.out.println("Deregistering old MySQL driver: " + driverClass);
+                DriverManager.deregisterDriver(d);
+            }
+        }
+        
         String dbUrl = envOrDefault("DB_URL", "jdbc:mysql://localhost:3307/enabling");
         
         // Auto-convert Railway's mysql:// format to JDBC format if needed
@@ -22,7 +39,7 @@ public class database {
             dbUrl = "jdbc:" + dbUrl;
         }
         
-        // Fix SSLHandshakeException for older MySQL drivers connecting to modern databases
+        // Fix SSL and auth issues for modern MySQL 8 databases
         if (dbUrl.contains("?")) {
             dbUrl += "&useSSL=false&allowPublicKeyRetrieval=true";
         } else {
