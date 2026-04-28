@@ -22,6 +22,13 @@ public class database {
             dbUrl = "jdbc:" + dbUrl;
         }
         
+        // Fix SSLHandshakeException for older MySQL drivers connecting to modern databases
+        if (dbUrl.contains("?")) {
+            dbUrl += "&useSSL=false&allowPublicKeyRetrieval=true";
+        } else {
+            dbUrl += "?useSSL=false&allowPublicKeyRetrieval=true";
+        }
+        
         String dbUser = envOrDefault("DB_USER", "root");
         String dbPass = envOrDefault("DB_PASS", "root");
         
