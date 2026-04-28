@@ -14,7 +14,7 @@ public class database {
 	}
 
     public Connection fun() throws Exception {
-        Class.forName(envOrDefault("DB_DRIVER", "com.mysql.jdbc.Driver"));
+        Class.forName(envOrDefault("DB_DRIVER", "com.mysql.cj.jdbc.Driver"));
         String dbUrl = envOrDefault("DB_URL", "jdbc:mysql://localhost:3307/enabling");
         
         // Auto-convert Railway's mysql:// format to JDBC format if needed
